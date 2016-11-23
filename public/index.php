@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL |E_STRICT);
+ini_set('display_errors', true);
+
 require_once '../vendor/autoload.php';
 
 use \Symfony\Component\HttpFoundation as HttpFoundation;
@@ -37,6 +40,8 @@ if (!$controller_instance instanceof \Application\Controllers\Base\Controller) {
     exit;
 }
 
+\Application\Supports\Config::load('../configs');
+
 /**
  * @var $route \Symfony\Component\Routing\RouteCollection
  */
@@ -44,5 +49,5 @@ try {
     $response = new HttpFoundation\Response($controller_instance->$action());
     $response->send();
 } catch (Exception $e) {
-    (new HttpFoundation\Response($e->getMessage(), 500))->send();
+    (new HttpFoundation\Response($e->getMessage() . $e->getTraceAsString(), 500))->send();
 }
