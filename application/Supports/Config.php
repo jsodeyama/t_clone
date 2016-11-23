@@ -60,6 +60,10 @@ class Config
         $composition = explode('.', $key);
         $base = array_shift($composition);
         if (count($composition) === 0) {
+            if (!isset(self::$loaded_config[$base])) {
+                return false;
+            }
+
             return self::$loaded_config[$base];
         }
 
