@@ -16,6 +16,18 @@ $routes->add(
     )
 );
 
+// sign up
+$routes->add(
+    'sign_up_confirm',
+    new Routing\Route(
+        '/user/registry/confirm/',
+        [
+            '_controller' => 'Application\Controllers\User\Registry',
+            '_action' => 'confirm',
+        ]
+    )
+);
+
 // login
 $routes->add(
     'login',
