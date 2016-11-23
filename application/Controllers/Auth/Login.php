@@ -8,6 +8,5 @@ class Login extends WebController
 {
     public function index()
     {
-        return "hoge";
     }
 }
